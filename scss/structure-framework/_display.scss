@@ -1,0 +1,18 @@
+// display styles
+.display-none {
+  display: none;
+}
+
+// responsive display min styles function
+@mixin resDisplayMin($resDisplayMinBreakpoint) {
+  .display-#{$resDisplayMinBreakpoint}-none {
+    display: none !important;
+  }
+}
+
+// responsive display max styles function
+@mixin resDisplayMax($resDisplayMaxBreakpoint){
+    .display-none-#{$resDisplayMaxBreakpoint}{
+        display: none !important;
+      }
+}

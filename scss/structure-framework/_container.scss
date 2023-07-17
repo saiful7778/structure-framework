@@ -1,0 +1,92 @@
+$gutter-x: 1.5rem;
+$gutter-y: 0.5rem;
+
+// container styles
+.container,
+.container-fluid {
+  width: 100%;
+  padding-right: calc($gutter-x * 0.5);
+  padding-left: calc($gutter-x * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+// row styles
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * $gutter-y);
+  margin-right: calc(-0.5 * $gutter-x);
+  margin-left: calc(-0.5 * $gutter-x);
+}
+.row > * {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  padding-right: calc($gutter-x * 0.5);
+  padding-left: calc($gutter-x * 0.5);
+  margin-top: $gutter-y;
+}
+
+
+
+// colume styles
+.col {
+  flex: 1 0 0%;
+}
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 auto;
+    width: $i * 8.3333333333333%;
+  }
+}
+// responsive colume style function
+@mixin resColume($columeBreakpoint) {
+  .col-#{$columeBreakpoint} {
+    flex: 1 0 0%;
+  }
+  .col-#{$columeBreakpoint}-auto {
+    flex: 0 0 auto;
+    width: auto;
+  }
+  @for $j from 1 through 12 {
+    .col-#{$columeBreakpoint}-#{$j} {
+      flex: 0 0 auto;
+      width: $j * 8.3333333333333%;
+    }
+  }
+}
+
+
+
+
+// order styles
+.order-first {
+  order: -1 !important;
+}
+@for $k from 1 through 5 {
+  .order-#{$k} {
+    order: $k !important;
+  }
+}
+.order-last {
+  order: 6 !important;
+}
+// responsive order style function
+@mixin resOrder($orderBreakpoint) {
+  .order-#{$orderBreakpoint}-first {
+    order: -1 !important;
+  }
+  @for $k from 1 through 5 {
+    .order-#{$orderBreakpoint}-#{$k} {
+      order: $k !important;
+    }
+  }
+  .order-#{$orderBreakpoint}-last {
+    order: 6 !important;
+  }
+}

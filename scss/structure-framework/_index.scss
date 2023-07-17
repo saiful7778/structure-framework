@@ -1,0 +1,65 @@
+// import all essentials files
+@import "./reset";
+@import "./display";
+@import "./container";
+@import "./structure-freamwork-variable";
+@import "./navbar";
+
+// all Breakpoints
+$all_breakPoints_and_widths: (
+  sm: 570,
+  md: 760,
+  lg: 1010,
+  xl: 1200,
+  xxl: 1390,
+) !default;
+
+// main function
+@mixin structure-framework($mainBreakPoint: sm) {
+  // main constant value
+  $constant: 30;
+
+  // loop all breakpoints and get breakpoint and screen-width
+  @each $breakPoint, $screenWidth in $all_breakPoints_and_widths {
+
+    // minium width media query styles
+    @media (min-width: #{$screenWidth}px) {
+      // container styles
+      .container {
+        max-width: ($screenWidth - $constant) + px;
+        $constant: $constant + 10;
+      }
+
+      // get all given breakpoints and add all styles
+      @each $inputBreakpoint in $mainBreakPoint {
+        @if ($inputBreakpoint == $breakPoint) {
+          // add responsive colume styles
+          @include resColume($breakPoint);
+
+          // add responsive order styles
+          @include resOrder($breakPoint);
+        }
+      }
+
+      // get smallest breakpoint which is given by function
+      $first-breakpoint: nth($mainBreakPoint, 1);
+
+      // add styles in smallest breakpoint
+      @if ($first-breakpoint == $breakPoint){
+
+        // add responsive navber styles
+        @include resNavbar();
+      }
+
+      // add responsive display styles in minium width
+      @include resDisplayMin($breakPoint);
+    }
+
+    // maxium width media query styles
+    @media (max-width: #{$screenWidth}px){
+
+      // add responsive display styles in maxium width
+      @include resDisplayMax($breakPoint);
+    }
+  }
+}

@@ -1,0 +1,4 @@
+@import './structure-framework/';
+
+$allBreakPoints: (md, lg);
+@include structure-framework($allBreakPoints);
